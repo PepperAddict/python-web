@@ -1,0 +1,39 @@
+= Project 1
+
+Web Programming with Python and JavaScript
+
+== setting up
+
+* [x] Python 3.6 or higher
+* [x] Download Project 1
+* [x] `pip3 install -r requirements.txt` 
+* [x] set environment label and debug mode to on and run the app: `FLASK_APP=application.py FLASK_DEBUG=on flask run`
+* [x] set up an `.env` file with the environment variables such as `DATABASE_URL=postgreSQL URI INFO` while that is set up add `FLASK_APP=application.py` and `FLASK_DEBUG=on` in
+in there as well.
+** In order for the `.env` file to work, will need to `pip install python-dotenv`
+
+== API
+
+* [x] Sign up for the Goodreads API and save the key.
+* [x] Add key information to the `.env` file. 
+
+== Building the App 
+
+* [ ] User should be able to register for an account 
+* [ ] User should be able to login for an account 
+* [ ] User should be able to log out 
+* [ ] Import the CSV spreadsheet file
+* [ ] When User is logged in, there should be a search functionality that searches for ISBN or title or author and it will give results. Should bring results even if not 
+completely typed in.
+* [ ] When logged in user  clicks on a book page from the search result, the new page should have more details about the book. The title, author, publication year, isbn number,
+and reviews that users have left for the book on your website. 
+* [ ] The user can submit a review and a rating of 1 - 5. The user cannot submit more than one review. 
+* [ ] The review data should have an average number of ratings from goodreads for that book. 
+* [ ] If a user make a get request to your website's `/api/<isbn>` the website should return a json response containing:
+**  book's title: *title*
+**  book's author: *author*
+**  publication date: *year*
+**  isbn number: *isbn* 
+** review count: *review_count*
+** and average score: *average_score*.
+* [ ] If the isbn number doesn't exist in the database for the api, it should result to a 404 error page. 
