@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+{% from 'header.html' import header %}
+
+{% block title %}
+    Book: {{book.title}} by {{book.author}}
+{% endblock %}
+
+{% block body %}
+ {{ header(user)}}
+  <div class="welcome-container">
+    <div>
+
+    <h1>{{book.title}}</h1> 
+    <small>{{book.isbn}}</small>
+    written by: {{book.author}}
+    published: {{book.year}}
+
+
+    <p>Rating: {{review.books[0].average_rating}} rated by {{review.books[0].reviews_count}} reviewers</p>
+      
+    <form action="/book/{{book.isbn}}" method="post">
+      <h2>Enter your own review</h2>
+      <select name="rating" value="5">
+        {% for o in rating %}
+        <option value="{{o}}">{{o}}</option>
+        {% endfor %}
+      </select>
+      <button>Submit</button>
+    </form>
+    this {{rate}}
+  
+  </div>
+    <a href="{{ url_for('index')}}">Back to list of books</a>
+  </div>  
+      
+{% endblock %}

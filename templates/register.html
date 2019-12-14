@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Book:
+{% endblock %}
+
+{% block body %}
+<div class="welcome-container">
+  <div>
+    <form action="{{url_for('regi')}}" method="post">
+      <label for="name">Name</label>
+      <input id="name" name="name" placeholder="name">
+
+      <label for="username">Username</label>
+      <input id="username" name="username" placeholder="username">
+
+      <label for="password">Password</label>
+      <input id="password" type="password" name="password" placeholder="password">
+      <button>Register</button>
+
+    </form>
+    {{success}}
+
+    {{name}} {{username}} {{password}}
+  </div>
+
+  {% endblock %}

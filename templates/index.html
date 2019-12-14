@@ -1,0 +1,34 @@
+{% extends "layout.html" %}
+{% from 'header.html' import header %}
+
+{% block title %}
+    Book Review App
+{% endblock %}
+
+{% block body %}
+  <div class="welcome-container">
+      {{ header(user)}}
+
+    <h1>Welcome!</h1>
+
+
+
+    <form action="{{ url_for('index')}}" method="post">
+      <label for="search">Search for a book</label>
+      <input type="text" id="search" name="search" placeholder="enter ISBN, Title or Author">
+      <button>Search</button>
+
+    </form>
+    
+      {% if search %}
+      You searched for <b>{{search}}</b>
+      {% endif %}
+    <ul>
+    {% for book in books %}
+    <li><a href="/book/{{book.isbn}}">{{book.title}} by {{book.author}} : {{book.isbn}}</a></li>
+    {% endfor %}
+    </ul>
+  </div>  
+  
+    
+{% endblock %}
