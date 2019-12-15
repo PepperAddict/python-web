@@ -25,24 +25,30 @@ needs to be done is run `flask run` from now on.
 * [x] User should be able to login for an account 
 * [x] User should be able to log out 
 * [x] Import the CSV spreadsheet file
-* [x] search functionality that searches for ISBN or title or author and it will give results. Should bring results even if not 
-completely typed in.
-* [ ] When logged in user  clicks on a book page from the search result, the new page should have more details about the book. The title, author, publication year, isbn number,
-and reviews that users have left for the book on your website. 
-* [ ] The user can submit a review and a rating of 1 - 5. The user cannot submit more than one review. 
+* [x] flexible search for... 
+** [x] ISBN 
+** [x] title
+** [x] author
+* [x] When logged in user  clicks on a book page from the search result, the new page should have
+** [x] title
+** [x] author
+** [x] publication year
+** [x] isbn number
+** [x] reviews that users have left for the book on your website. 
+* [x] The user can submit a review and a rating of 1 - 5. The user cannot submit more than one review. 
 * [x] The review data should have an average number of ratings from goodreads for that book. 
-* [ ] If a user make a get request to your website's `/api/<isbn>` the website should return a json response containing:
+* [x] If a user make a get request to your website's `/api/<isbn>` the website should return a json response containing:
 **  book's title: *title*
 **  book's author: *author*
 **  publication date: *year*
 **  isbn number: *isbn* 
 ** review count: *review_count*
 ** and average score: *average_score*
-* [ ] If the isbn number doesn't exist in the database for the api, it should result to a 404 error page. 
+* [x] If the isbn number doesn't exist in the database, it should result to a 404 error page. 
 
 == Database 
 
 * [x] Create a users table using SQLAlchemy
 * [x] Create books table using SQLAlchemy
-* [ ] Create reviews table using SQLAlchemy
+* [x] Create reviews table using SQLAlchemy
 * [x] Import the csv rows to the books table 

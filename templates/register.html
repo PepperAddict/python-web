@@ -5,8 +5,8 @@ Book:
 {% endblock %}
 
 {% block body %}
-<div class="welcome-container">
-  <div>
+<div class="login-container">
+
     <form action="{{url_for('regi')}}" method="post">
       <label for="name">Name</label>
       <input id="name" name="name" placeholder="name">
@@ -19,9 +19,11 @@ Book:
       <button>Register</button>
 
     </form>
-    {{success}}
 
-    {{name}} {{username}} {{password}}
+    <nav>
+      <a href="{{url_for('regi')}}">Register</a>
+      or go back <a href="{{url_for('index')}}">Home</a>
+    </mav>
   </div>
 
   {% endblock %}

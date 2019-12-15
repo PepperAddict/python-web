@@ -1,8 +1,8 @@
 
 {% macro header(user) %}
 <header>
-    {% if user %}
-    Hello {{user}}!
+    {% if user %} 
+    {{user}} 
     <form action="{{url_for('logout')}}" method="post">
       <button>Logout</button>
     </form>

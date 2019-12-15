@@ -9,23 +9,23 @@
   <div class="welcome-container">
       {{ header(user)}}
 
-    <h1>Welcome!</h1>
+<center><h1>Welcome to Book Review!</h1></center>
 
-
-
-    <form action="{{ url_for('index')}}" method="post">
-      <label for="search">Search for a book</label>
-      <input type="text" id="search" name="search" placeholder="enter ISBN, Title or Author">
-      <button>Search</button>
-
-    </form>
     
       {% if search %}
-      You searched for <b>{{search}}</b>
+      You searched for <b>{{search}}</b> 
+      <a href="/">Clear search</a>
       {% endif %}
-    <ul>
+
+      <h1>Lists of Books</h1>
+      <form class="search" action="{{ url_for('index')}}" method="post">
+        <label for="search">Search books: </label>
+        <input type="text" id="search" name="search" placeholder="enter ISBN, Title or Author">
+        <button>Search</button>
+      </form>
+    <ul class="booklists">
     {% for book in books %}
-    <li><a href="/book/{{book.isbn}}">{{book.title}} by {{book.author}} : {{book.isbn}}</a></li>
+    <li><a href="/book/{{book.isbn}}">{{book.title}} by {{book.author}}</a></li>
     {% endfor %}
     </ul>
   </div>  
