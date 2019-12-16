@@ -2,33 +2,33 @@
 {% from 'header.html' import header %}
 
 {% block title %}
-    Book Review App
+Book Review App
 {% endblock %}
 
 {% block body %}
-  <div class="welcome-container">
-      {{ header(user)}}
+<div class="welcome-container">
+  {{ header(user)}}
 
-<center><h1>Welcome to Book Review!</h1></center>
+  <center>
+    <h1>Welcome to Book Review!</h1>
+  </center>
 
-  
-
-      <h1>Lists of Books</h1>
-      <form class="search" action="{{ url_for('index')}}" method="post">
-        <label for="search">Search books: </label>
-        <input type="text" id="search" name="search" placeholder="enter ISBN, Title or Author">
-        <button>Search</button>
-      </form>
-      {% if search %}
-      You searched for <b>{{search}}</b> 
-      <a href="/">✖</a>
-      {% endif %}
-    <ul class="booklists">
+  <h1>Lists of Books</h1>
+  <form class="search" action="{{ url_for('index')}}" method="post">
+    <label for="search">Search books: </label>
+    <input type="text" id="search" name="search" placeholder="enter ISBN, Title or Author">
+    <button>Search</button>
+  </form>
+  {% if search %}
+  You searched for <b>{{search}}</b>
+  <a href="/">✖</a>
+  {% endif %}
+  <ul class="booklists">
     {% for book in books %}
-    <li><a href="/book/{{book.isbn}}">{{book.title}} by {{book.author}}</a></li>
+    <li><a href="/book/{{book.isbn}}"><b>{{book.title}}</b> by <b>{{book.author}}</b></a></li>
     {% endfor %}
-    </ul>
-  </div>  
-  
-    
+  </ul>
+</div>
+
+
 {% endblock %}

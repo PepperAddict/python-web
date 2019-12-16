@@ -51,8 +51,8 @@ input {
 
 .booklists {
   list-style-type: none;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  display: flex;
+  flex-wrap: wrap;
   grid-gap: 10px;
   padding: 0px;
 }
@@ -61,12 +61,17 @@ input {
     box-sizing: border-box;
     padding: 10px;
     text-align: center;
+    margin: 10px;
 }
 .booklists li:nth-child(even) {
   background: #e7e7e7;
 }
 .booklists li:hover a {
   color: black;
+}
+.booklists b {
+  color: #005274;
+  text-transform: capitalize
 }
 
 .booklists li a {

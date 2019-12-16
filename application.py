@@ -8,7 +8,6 @@ from sqlalchemy.orm import scoped_session, sessionmaker
 
 app = Flask(__name__)
 
-
 # Check for environment variable
 if not os.getenv("DATABASE_URL"):
     raise RuntimeError("DATABASE_URL is not set")
@@ -123,8 +122,8 @@ def regi():
             {"name": name, "username": username, "password": password})
         success = "Successfully Registered"
         session['user'] = username
-        return redirect('/')
         db.commit()
+        return redirect('/')
 
     return render_template('register.html', success=success, name=name, username=username, password=password)
 
