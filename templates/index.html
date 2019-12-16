@@ -11,11 +11,7 @@
 
 <center><h1>Welcome to Book Review!</h1></center>
 
-    
-      {% if search %}
-      You searched for <b>{{search}}</b> 
-      <a href="/">Clear search</a>
-      {% endif %}
+  
 
       <h1>Lists of Books</h1>
       <form class="search" action="{{ url_for('index')}}" method="post">
@@ -23,6 +19,10 @@
         <input type="text" id="search" name="search" placeholder="enter ISBN, Title or Author">
         <button>Search</button>
       </form>
+      {% if search %}
+      You searched for <b>{{search}}</b> 
+      <a href="/">✖</a>
+      {% endif %}
     <ul class="booklists">
     {% for book in books %}
     <li><a href="/book/{{book.isbn}}">{{book.title}} by {{book.author}}</a></li>

@@ -43,6 +43,7 @@ button {
   background: #00d938;
   border: 1px solid #00d938;
   color: white;
+  cursor: pointer;
 }
 input {
   padding: 5px;
@@ -97,17 +98,48 @@ input {
 
 /* book description */
 
+
 .book-container {
   width: 100%;
   box-sizing: border-box;
   padding: 30px;
 }
 .book-description {
-  background: green;
+  background: #005274;
+  padding: 30px;
+  border-radius: 15px;
+  margin: 20px;
+}
+.book-reviews {
+  background: #005274;
+  padding: 30px;
+  border-radius: 15px 15px 0 0;
+  margin: 20px;
 }
 
 .book-review {
   padding: 10px;
   margin: 10px;
-  border: 1px solid darkgray;
+  border: 1px solid #006792;
+  border-radius: 10px;
+}
+
+.book-textarea {
+  margin: 20px;
+  background: #363636;
+  padding: 30px;
+}
+
+.book-form {
+  display: grid;
+  grid-row-gap: 15px;
+  max-width: 600px;
+}
+
+.book-form textarea {
+  height: 150px;
+}
+.quote {
+  background: #006792;
+  padding: 10px;
 }

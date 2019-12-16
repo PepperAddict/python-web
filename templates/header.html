@@ -2,13 +2,13 @@
 {% macro header(user) %}
 <header>
     {% if user %} 
-    {{user}} 
+    <a href="{{ url_for('index')}}">Home</a> | {{user}} 
     <form action="{{url_for('logout')}}" method="post">
       <button>Logout</button>
     </form>
     {% else %}
     <nav>
-    <a href="{{ url_for('login')}}">Login</a> | <a href="{{ url_for('regi')}}">Register</a>  
+        <a href="{{ url_for('index')}}">Home</a> | <a href="{{ url_for('login')}}">Login</a> | <a href="{{ url_for('regi')}}">Register</a>  
     </nav>
 
     {% endif %}

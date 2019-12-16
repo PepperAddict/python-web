@@ -10,55 +10,56 @@ Book: {{book.title}} by {{book.author}}
 <div class="book-container">
 
   <h1>{{book.title}}</h1>
-
   <div class="book-description">
-    <small>{{book.isbn}}</small>
-    Author: {{book.author}}
-    Published: {{book.year}}
-    <p>Rating: {{review.books[0].average_rating}} rated by {{review.books[0].reviews_count}} reviewers</p>
+    <small>ISBN:<a href="/api/{{book.isbn}}">✫ {{book.isbn}}</a></small>
+    <p><b>Author: </b>{{book.author}}</p>
+    <p><b>Published:</b> {{book.year}}</p>
+    <p><b>Rating: </b>{{review.books[0].average_rating}} rated by {{review.books[0].reviews_count}} reviewers</p>
 
   </div>
 
   {% if userReview %}
+  <h2> Reviews </h2>
   <div class="book-reviews">
 
-    <h2> Reviews </h2>
     {% for rev in userReview %}
     <div class="book-review">
 
-      <p>{{rev.username}}</p>
+      <p>
+        <h3>{{rev.username}}</h3>
+      </p>
       <p>Rating Given: {{rev.rating}}</p>
-      <p>{{rev.review}}</p>
+      <p class="quote">{{rev.review}}</p>
     </div>
     {% endfor %}
 
   </div>
   {% endif %}
 
+  <div class="book-textarea">
+    {% if user is not none %}
+    {% if commented %}
+    <p> You have already submitted a comment</p>
+    {% else %}
+    <h2>Review {{book.title}}</h2>
+    <form action="/book/{{book.isbn}}" method="post" class="book-form">
+      <label for="rating">Rating: </label>
+      <select id="rating" name="rating" value="5">
+        {% for o in rating %}
+        <option value="{{o}}">{{o}}</option>
+        {% endfor %}
+      </select>
+      <label for="review">Review</label>
+      <textarea id="review" name="review"> </textarea>
+      <button>Submit</button>
+    </form>
+    {% endif %}
 
-  {% if user is not none %}
+    {% else %}
+    <p>You need to login to comment </p>
+    {% endif %}
+  </div>
 
-  {% if commented %}
-  <p> you have already submitted a comment</p>
-  {% else %}
-  <form action="/book/{{book.isbn}}" method="post">
-    <h2>Enter your own review</h2>
-    <select name="rating" value="5">
-      {% for o in rating %}
-      <option value="{{o}}">{{o}}</option>
-      {% endfor %}
-    </select>
-    <textarea name="review"> </textarea>
-    <button>Submit</button>
-  </form>
-  {% endif %}
-
-  {% else %}
-  <p>You need to login to comment </p>
-  {% endif %}
-
-
-  <a href="{{ url_for('index')}}">Back to list of books</a>
 </div>
 
 {% endblock %}
