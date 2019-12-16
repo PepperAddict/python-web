@@ -34,15 +34,17 @@ def index():
 
 @app.route("/api/<string:isbn>")
 def api(isbn):
+    # api call if 404 then give None to Review
     res = requests.get("https://www.goodreads.com/book/review_counts.json", params={"key": os.getenv("KEY"), "isbns": isbn })
     if res.status_code == requests.codes["ok"]:
         review = res.json()
     else: 
         review = None
 
+    # book table call
     book = db.execute("SELECT * FROM books WHERE isbn = :isbn", {"isbn": isbn}).fetchone()
-    print(res)
 
+    # if everyone is okay give all the information
     if review is not None and book is not None:
         bookJSON = {
             "isbn": isbn,
@@ -53,6 +55,7 @@ def api(isbn):
             "avg_rating": review["books"][0]["average_rating"],
         }
     else: 
+        # if goodreads api is none and book doesn't give anything then give Error
         bookJSON = {"result": "Sorry, there was no information for this ISBN"}
         
     return jsonify(bookJSON)
@@ -106,16 +109,18 @@ def book(isbn):
 @app.route("/register", methods=["GET", "POST"])
 def regi():
 
-        # let's check to see if user is already logged in
+    # let's check to see if user is already logged in
     ruin = session.get('user')
     if request.method == "GET":
         if ruin is not None: 
             return redirect('/')
 
+    # the form information
     name = request.form.get('name')
     username = request.form.get('username')
     password = request.form.get('password')
-    success = ''
+
+    # if the form information isn't empty then go ahead and send it to DB
 
     if name is not None and username is not None and password is not None:
         db.execute('INSERT INTO users (name, username, password) VALUES (:name, :username, :password)',
@@ -125,7 +130,7 @@ def regi():
         db.commit()
         return redirect('/')
 
-    return render_template('register.html', success=success, name=name, username=username, password=password)
+    return render_template('register.html')
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
@@ -136,27 +141,26 @@ def login():
         if ruin is not None: 
             return redirect('/')
 
+    # the form information to use for logging in
     username = request.form.get('username')
     password = request.form.get('password')
 
+   
     if request.method == "POST":
         user = db.execute("SELECT * FROM users WHERE username = :username AND password = :password", {"username": username, "password": password}).fetchone()
         
+        # if successful then set session to username
         if user is not None:
             session['user'] = username
             return redirect('/')
         else:
-            session['user'] = None
-
-    
+            session['user'] = None    
     return render_template('login.html')
 
+# logout feature
 @app.route("/logout", methods=["POST"])
 def logout():
     session['user'] = None
     return redirect('/')
 
-@app.route("/review", methods=["POST"])
-def review():
-    select = request.form.get('rating')
-    session['rating'] = select
+
